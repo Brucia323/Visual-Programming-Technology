@@ -29,6 +29,7 @@ namespace 选课系统
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -52,7 +53,6 @@ namespace 选课系统
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -104,7 +104,6 @@ namespace 选课系统
             this.Column6,
             this.Column7,
             this.Column8,
-            this.Column9,
             this.Column10});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.Location = new System.Drawing.Point(3, 196);
@@ -272,21 +271,15 @@ namespace 选课系统
             this.Column8.Name = "Column8";
             this.Column8.Width = 124;
             // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "修改";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Text = "修改";
-            this.Column9.UseColumnTextForButtonValue = true;
-            this.Column9.Width = 124;
-            // 
             // Column10
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "删除";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column10.HeaderText = "删除";
             this.Column10.MinimumWidth = 6;
             this.Column10.Name = "Column10";
-            this.Column10.Text = "删除";
+            this.Column10.Text = "";
             this.Column10.UseColumnTextForButtonValue = true;
             this.Column10.Width = 124;
             // 
@@ -331,7 +324,6 @@ namespace 选课系统
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewButtonColumn Column9;
         private System.Windows.Forms.DataGridViewButtonColumn Column10;
     }
 }
