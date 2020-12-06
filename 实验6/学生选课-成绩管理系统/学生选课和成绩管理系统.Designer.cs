@@ -1,7 +1,7 @@
 ﻿
 namespace 学生选课_成绩管理系统
 {
-    partial class Form1
+    partial class 学生选课和成绩管理系统
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -108,7 +108,7 @@ namespace 学生选课_成绩管理系统
             this.button7.Text = "设置";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // 学生选课和成绩管理系统
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,7 +120,7 @@ namespace 学生选课_成绩管理系统
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "学生选课和成绩管理系统";
             this.Text = "学生选课/成绩管理系统";
             this.ResumeLayout(false);
             this.PerformLayout();

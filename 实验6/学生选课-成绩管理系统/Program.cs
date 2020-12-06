@@ -16,7 +16,7 @@ namespace 学生选课_成绩管理系统
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new 学生选课和成绩管理系统());
         }
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace 学生选课_成绩管理系统
 {
-    public partial class Form1 : Form
+    public partial class 课程信息管理 : Form
     {
-        public Form1()
+        public 课程信息管理()
         {
             InitializeComponent();
         }
