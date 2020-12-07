@@ -90,6 +90,9 @@
     <Compile Include="院系信息管理.Designer.cs">
       <DependentUpon>院系信息管理.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="学生信息管理.resx">
+      <DependentUpon>学生信息管理.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="学生选课和成绩管理系统.resx">
       <DependentUpon>学生选课和成绩管理系统.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +105,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="班级信息管理.resx">
+      <DependentUpon>班级信息管理.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
