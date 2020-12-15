@@ -26,8 +26,8 @@ namespace 学生选课_成绩管理系统
             {
                 sqlConnection.Open();
                 //MessageBox.Show(sqlConnection.State.ToString());
-                string sql1 = "select name from department";//学院
-                sqlCommand.CommandText = sql1;
+                string sql = "select name from department";//学院
+                sqlCommand.CommandText = sql;
                 SqlDataReader sqlDataReader1 = sqlCommand.ExecuteReader();
                 while (sqlDataReader1.Read())
                 {

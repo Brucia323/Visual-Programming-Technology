@@ -26,8 +26,8 @@ namespace 学生选课_成绩管理系统
             {
                 sqlConnection.Open();
                 //MessageBox.Show(sqlConnection.State.ToString());
-                string sql1 = "select name from department";//学院
-                sqlCommand.CommandText = sql1;
+                string sql = "select name from department";//学院
+                sqlCommand.CommandText = sql;
                 SqlDataReader sqlDataReader1 = sqlCommand.ExecuteReader();
                 while (sqlDataReader1.Read())
                 {
@@ -35,29 +35,6 @@ namespace 学生选课_成绩管理系统
                 }
                 comboBox1.Text = (string)comboBox1.Items[0];
                 sqlDataReader1.Close();
-
-                string sql2 = "select name from major where department=(select no from department where name=(@department))";//专业
-                sqlCommand.CommandText = sql2;
-                sqlCommand.Parameters.Add("@department", SqlDbType.NVarChar, 255).Value = comboBox1.Text;
-                SqlDataReader sqlDataReader2 = sqlCommand.ExecuteReader();
-                while (sqlDataReader2.Read())
-                {
-                    comboBox2.Items.Add(sqlDataReader2[0].ToString());
-                }
-                comboBox2.Text = (string)comboBox2.Items[0];
-                sqlDataReader2.Close();
-
-                string sql3 = "select name from class where major=(select no from major where name=(@major))";//班级
-                sqlCommand.CommandText = sql3;
-                sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
-                SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
-                while (sqlDataReader3.Read())
-                {
-                    comboBox3.Items.Add(sqlDataReader3[0].ToString());
-                }
-                comboBox3.Text = (string)comboBox3.Items[0];
-                sqlDataReader3.Close();
-
 
                 sqlConnection.Close();
             }
@@ -81,8 +58,8 @@ namespace 学生选课_成绩管理系统
             {
                 sqlConnection.Open();
 
-                string sql2 = "select name from major where department=(select no from department where name=(@department))";//专业
-                sqlCommand.CommandText = sql2;
+                string sql = "select name from major where department=(select no from department where name=(@department))";//专业
+                sqlCommand.CommandText = sql;
                 sqlCommand.Parameters.Add("@department", SqlDbType.NVarChar, 255).Value = comboBox1.Text;
                 SqlDataReader sqlDataReader2 = sqlCommand.ExecuteReader();
                 while (sqlDataReader2.Read())
@@ -91,17 +68,6 @@ namespace 学生选课_成绩管理系统
                 }
                 comboBox2.Text = (string)comboBox2.Items[0];
                 sqlDataReader2.Close();
-
-                string sql3 = "select name from class where major=(select no from major where name=(@major))";//班级
-                sqlCommand.CommandText = sql3;
-                sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
-                SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
-                while (sqlDataReader3.Read())
-                {
-                    comboBox3.Items.Add(sqlDataReader3[0].ToString());
-                }
-                comboBox3.Text = (string)comboBox3.Items[0];
-                sqlDataReader3.Close();
 
                 sqlConnection.Close();
             }
@@ -124,8 +90,8 @@ namespace 学生选课_成绩管理系统
             {
                 sqlConnection.Open();
 
-                string sql3 = "select name from class where major=(select no from major where name=(@major))";//班级
-                sqlCommand.CommandText = sql3;
+                string sql = "select name from class where major=(select no from major where name=(@major))";//班级
+                sqlCommand.CommandText = sql;
                 sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
                 SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
                 while (sqlDataReader3.Read())
