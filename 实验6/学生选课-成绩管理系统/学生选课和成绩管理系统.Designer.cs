@@ -45,7 +45,7 @@ namespace 学生选课_成绩管理系统
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 25);
             this.button1.TabIndex = 0;
-            this.button1.Text = "院系信息管理";
+            this.button1.Text = "选课信息管理";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -56,7 +56,7 @@ namespace 学生选课_成绩管理系统
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(152, 25);
             this.button2.TabIndex = 1;
-            this.button2.Text = "专业、方向信息管理";
+            this.button2.Text = "成绩信息管理";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -128,6 +128,7 @@ namespace 学生选课_成绩管理系统
             this.Controls.Add(this.button1);
             this.Name = "学生选课和成绩管理系统";
             this.Text = "学生选课/成绩管理系统";
+            this.Load += new System.EventHandler(this.学生选课和成绩管理系统_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

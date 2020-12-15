@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace 学生选课_成绩管理系统
 {
@@ -19,14 +20,14 @@ namespace 学生选课_成绩管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            院系信息管理 yx = new 院系信息管理();
-            yx.Show();
+            选课信息管理 xk = new 选课信息管理();
+            xk.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            专业_方向信息管理 zy_fx = new 专业_方向信息管理();
-            zy_fx.Show();
+            成绩信息管理 cj = new 成绩信息管理();
+            cj.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -51,6 +52,23 @@ namespace 学生选课_成绩管理系统
         {
             教师信息管理 js = new 教师信息管理();
             js.Show();
+        }
+
+        private void 学生选课和成绩管理系统_Load(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            try
+            {
+                sqlConnection.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
     }
 }
