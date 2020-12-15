@@ -36,7 +36,7 @@ namespace 学生选课_成绩管理系统
                 comboBox1.Text = (string)comboBox1.Items[0];
                 sqlDataReader1.Close();
 
-                string sql2 = "select name from major where department=(@department)";//专业
+                string sql2 = "select name from major where department=(select no from department where name=(@department))";//专业
                 sqlCommand.CommandText = sql2;
                 sqlCommand.Parameters.Add("@department", SqlDbType.NVarChar, 255).Value = comboBox1.Text;
                 SqlDataReader sqlDataReader2 = sqlCommand.ExecuteReader();
@@ -47,8 +47,9 @@ namespace 学生选课_成绩管理系统
                 comboBox2.Text = (string)comboBox2.Items[0];
                 sqlDataReader2.Close();
 
-                string sql3 = "select name from class";//班级
+                string sql3 = "select name from class where major=(select no from major where name=(@major))";//班级
                 sqlCommand.CommandText = sql3;
+                sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
                 SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
                 while (sqlDataReader3.Read())
                 {
@@ -78,7 +79,7 @@ namespace 学生选课_成绩管理系统
             try
             {
                 sqlConnection.Open();
-                string sql2 = "select name from major where department=(@department)";//专业
+                string sql2 = "select name from major where department=(select no from department where name=(@department))";//专业
                 sqlCommand.CommandText = sql2;
                 sqlCommand.Parameters.Add("@department", SqlDbType.NVarChar, 255).Value = comboBox1.Text;
                 SqlDataReader sqlDataReader2 = sqlCommand.ExecuteReader();
@@ -88,6 +89,18 @@ namespace 学生选课_成绩管理系统
                 }
                 comboBox2.Text = (string)comboBox2.Items[0];
                 sqlDataReader2.Close();
+
+                string sql3 = "select name from class where major=(select no from major where name=(@major))";//班级
+                sqlCommand.CommandText = sql3;
+                sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
+                SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
+                while (sqlDataReader3.Read())
+                {
+                    comboBox3.Items.Add(sqlDataReader3[0].ToString());
+                }
+                comboBox3.Text = (string)comboBox3.Items[0];
+                sqlDataReader3.Close();
+
                 sqlConnection.Close();
             }
             catch (Exception ex)
