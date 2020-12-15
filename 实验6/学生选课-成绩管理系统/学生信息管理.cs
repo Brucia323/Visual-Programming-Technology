@@ -74,11 +74,13 @@ namespace 学生选课_成绩管理系统
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
+            comboBox3.Items.Clear();
             SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
                 sqlConnection.Open();
+
                 string sql2 = "select name from major where department=(select no from department where name=(@department))";//专业
                 sqlCommand.CommandText = sql2;
                 sqlCommand.Parameters.Add("@department", SqlDbType.NVarChar, 255).Value = comboBox1.Text;
@@ -102,6 +104,35 @@ namespace 学生选课_成绩管理系统
                 sqlDataReader3.Close();
 
                 sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox3.Items.Clear();
+            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            try
+            {
+                sqlConnection.Open();
+
+                string sql3 = "select name from class where major=(select no from major where name=(@major))";//班级
+                sqlCommand.CommandText = sql3;
+                sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
+                SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
+                while (sqlDataReader3.Read())
+                {
+                    comboBox3.Items.Add(sqlDataReader3[0].ToString());
+                }
+                comboBox3.Text = (string)comboBox3.Items[0];
+                sqlDataReader3.Close();
+
+                sqlConnection.Close();
+
             }
             catch (Exception ex)
             {
