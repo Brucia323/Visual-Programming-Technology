@@ -21,12 +21,12 @@ namespace 学生选课_成绩管理系统
         private void 学生信息管理_Load(object sender, EventArgs e)
         {
             SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
-            string sql1 = "select name from department";//学院
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
                 sqlConnection.Open();
                 //MessageBox.Show(sqlConnection.State.ToString());
+                string sql1 = "select name from department";//学院
                 sqlCommand.CommandText = sql1;
                 SqlDataReader sqlDataReader1 = sqlCommand.ExecuteReader();
                 while (sqlDataReader1.Read())
@@ -109,6 +109,10 @@ namespace 学生选课_成绩管理系统
             {
                 MessageBox.Show(ex.ToString());
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,6 +141,10 @@ namespace 学生选课_成绩管理系统
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
     }

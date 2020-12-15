@@ -119,6 +119,7 @@ namespace 学生选课_成绩管理系统
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(95, 5);
             this.comboBox1.Name = "comboBox1";
@@ -136,6 +137,7 @@ namespace 学生选课_成绩管理系统
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(315, 5);
             this.comboBox2.Name = "comboBox2";
@@ -164,6 +166,7 @@ namespace 学生选课_成绩管理系统
             this.Controls.Add(this.dataGridView1);
             this.Name = "课程信息管理";
             this.Text = "课程信息管理";
+            this.Load += new System.EventHandler(this.课程信息管理_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
