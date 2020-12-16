@@ -145,47 +145,39 @@ namespace 学生选课_成绩管理系统
             cell = dataGridView1.CurrentCellAddress.X;//列
             strcolumn = HeaderText[cell];//列名
             sno = dataGridView1.Rows[row].Cells[0].Value.ToString();
-            MessageBox.Show("row: " + row.ToString() + "cell: " + cell.ToString() + "value: " + changevalue + "列名: " + strcolumn + "sno: " + sno);
-
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             changevalue = dataGridView1.Rows[row].Cells[cell].Value.ToString();
-            MessageBox.Show("当前要改的值为：" + changevalue);
+            string sql = "update Student set " + strcolumn + " =  '" + changevalue + "' where Sno = " + sno;
+            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.ExecuteNonQuery().ToString();
+                sqlConnection.Close();
+                sql = "select Sno as 学号, student.Name as 姓名, Sex as 性别, Birthday as 出生日期, Origin as 籍贯, PFace as 政治面貌, Duty as 职位 ,Tel as 电话 , Class.name as 班级, DateA as 入学日期, Major.name as 专业, ID as 身份,Status as 状态 from Student,class,major where student.class=class.no and student.major=major.no and student.class=(select no from class where name like '" + comboBox3.Text + "%' and major=(select no from major where name like '" + comboBox2.Text + "%')) and student.major=(select no from major where name like '" + comboBox2.Text + "%')";
+                sqlCommand = sqlConnection.CreateCommand();
+                sqlCommand.CommandText = sql;
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sql, sqlConnection);
+                DataSet dataSet = new DataSet();
+                try
+                {
+                    sqlConnection.Open();
+                    sqlDataAdapter.Fill(dataSet);//将原表名作为默认表名
+                    dataGridView1.DataSource = dataSet.Tables[0];
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                }
 
-            if (dataGridView1.Rows[row].Cells[0].Value != null)
-            {
-                string sql = "update Student set " + strcolumn + " =  '" + changevalue + "' where Sno = " + sno;
-                SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
-                try
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
-                    string check = sqlCommand.ExecuteNonQuery().ToString();
-                    MessageBox.Show(check + "行受影响");
-                    sqlConnection.Close();
-                }
-                catch (Exception ee)
-                {
-                    MessageBox.Show(ee.ToString());
-                }
             }
-            else
+            catch (Exception ee)
             {
-                string sql = "insert  into  Student (" + strcolumn + ") values ( '" + changevalue + "' )";
-                SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
-                try
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
-                    sqlCommand.ExecuteNonQuery();
-                    sqlConnection.Close();
-                }
-                catch (Exception ee)
-                {
-                    MessageBox.Show(ee.ToString());
-                }
+                MessageBox.Show(ee.ToString());
             }
         }
     }

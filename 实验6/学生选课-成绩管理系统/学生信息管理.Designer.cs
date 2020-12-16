@@ -37,6 +37,7 @@ namespace 学生选课_成绩管理系统
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@ namespace 学生选课_成绩管理系统
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(218, 16);
+            this.label2.Location = new System.Drawing.Point(202, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 15);
             this.label2.TabIndex = 1;
@@ -61,7 +62,7 @@ namespace 学生选课_成绩管理系统
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(424, 16);
+            this.label3.Location = new System.Drawing.Point(392, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 15);
             this.label3.TabIndex = 2;
@@ -71,7 +72,7 @@ namespace 学生选课_成绩管理系统
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(73, 12);
+            this.comboBox1.Location = new System.Drawing.Point(65, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 3;
@@ -81,7 +82,7 @@ namespace 学生选课_成绩管理系统
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(279, 12);
+            this.comboBox2.Location = new System.Drawing.Point(255, 12);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
             this.comboBox2.TabIndex = 4;
@@ -91,7 +92,7 @@ namespace 学生选课_成绩管理系统
             // 
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(485, 12);
+            this.comboBox3.Location = new System.Drawing.Point(445, 12);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 23);
             this.comboBox3.TabIndex = 5;
@@ -111,19 +112,29 @@ namespace 学生选课_成绩管理系统
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(630, 11);
+            this.button1.Location = new System.Drawing.Point(582, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 25);
+            this.button1.Size = new System.Drawing.Size(88, 25);
             this.button1.TabIndex = 16;
             this.button1.Text = "查询";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(686, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(88, 25);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "添加";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // 学生信息管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox3);
@@ -151,5 +162,6 @@ namespace 学生选课_成绩管理系统
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
