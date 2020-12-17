@@ -25,7 +25,7 @@ namespace 学生选课_成绩管理系统
         public string sno;
         private void 学生信息管理_Load(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -57,7 +57,7 @@ namespace 学生选课_成绩管理系统
         {
             comboBox2.Items.Clear();
             comboBox3.Items.Clear();
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -89,7 +89,7 @@ namespace 学生选课_成绩管理系统
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox3.Items.Clear();
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -120,7 +120,7 @@ namespace 学生选课_成绩管理系统
 
         private void button1_Click(object sender, EventArgs e)//查询
         {
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             string sql = "select Sno as 学号, student.Name as 姓名, Sex as 性别, Birthday as 出生日期, Origin as 籍贯, PFace as 政治面貌, Duty as 职位 ,Tel as 电话 , Class.name as 班级, DateA as 入学日期, Major.name as 专业, ID as 身份,Status as 状态 from Student,class,major where student.class=class.no and student.major=major.no and student.class=(select no from class where name like '" + comboBox3.Text + "%' and major=(select no from major where name like '" + comboBox2.Text + "%')) and student.major=(select no from major where name like '" + comboBox2.Text + "%')";
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             sqlCommand.CommandText = sql;
@@ -151,7 +151,7 @@ namespace 学生选课_成绩管理系统
         {
             changevalue = dataGridView1.Rows[row].Cells[cell].Value.ToString();
             string sql = "update Student set " + strcolumn + " =  '" + changevalue + "' where Sno = " + sno;
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             try
             {
                 sqlConnection.Open();

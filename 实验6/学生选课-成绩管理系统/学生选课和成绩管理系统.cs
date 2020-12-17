@@ -56,7 +56,7 @@ namespace 学生选课_成绩管理系统
 
         private void 学生选课和成绩管理系统_Load(object sender, EventArgs e)
         {
-            //SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            //SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             //try
             //{
             //    sqlConnection.Open();

@@ -20,7 +20,7 @@ namespace 学生选课_成绩管理系统
 
         private void 成绩信息管理_Load(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -53,7 +53,7 @@ namespace 学生选课_成绩管理系统
         {
             comboBox2.Items.Clear();
             comboBox3.Items.Clear();
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -86,7 +86,7 @@ namespace 学生选课_成绩管理系统
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox3.Items.Clear();
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -119,7 +119,7 @@ namespace 学生选课_成绩管理系统
 
         private void button1_Click(object sender, EventArgs e)//查询
         {
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             string sql = "select grade.sno as '学号',student.name as '姓名',course.no as '课程',grade as '成绩' from grade,student,course where student.sno=grade.sno and grade.course=course.no and cno=(select no from class where name like '" + comboBox3.Text + "%' and major=(select no from major where name like '" + comboBox2.Text + "%'))";
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             sqlCommand.CommandText = sql;

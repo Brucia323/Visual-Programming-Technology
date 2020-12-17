@@ -21,7 +21,7 @@ namespace 学生选课_成绩管理系统
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -52,7 +52,7 @@ namespace 学生选课_成绩管理系统
 
         private void 班级信息管理_Load(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             try
             {
@@ -83,7 +83,7 @@ namespace 学生选课_成绩管理系统
 
         private void button1_Click(object sender, EventArgs e)//查询
         {
-            SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString.connectionstring);
             string sql = "select class.no as '编号',class.name as '名称',monitor as '班长',class.Counsellor as '辅导员',size as '人数',major.name as '专业',department.name as '学院' from class,major,department where class.major=major.no and class.department=department.no and major=(select no from major where name like '" + comboBox2.Text + "%')";
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             sqlCommand.CommandText = sql;
