@@ -49,7 +49,7 @@ namespace 学生选课_成绩管理系统
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)//查询
         {
             SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JWGLDB;integrated security=sspi");
             string sql = "select course.no as '编号',course.name as '名称',hour as '学时',credit as '学分',type as '课程类型',department.name as '开课学院' from course,department where course.department=department.no and type like '"+comboBox2.Text+"%' and course.department=(select no from department where name like '"+comboBox1.Text+"%')";
