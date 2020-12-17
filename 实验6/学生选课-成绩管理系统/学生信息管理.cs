@@ -17,7 +17,7 @@ namespace 学生选课_成绩管理系统
         {
             InitializeComponent();
         }
-        string[] HeaderText = { "Sno", "Name", " Sex", " Birthday", " Origin", " PFace", " Duty", " Tel", " Class", " DateA", " MajorD", " ID Status" };
+        string[] HeaderText = { "Sno", "Name", " Sex", " Birthday", " Origin", " PFace", " Duty", " Tel", " Class", " DateA", " Major", " ID Status" };
         public int row;
         public int cell;
         public string changevalue;
