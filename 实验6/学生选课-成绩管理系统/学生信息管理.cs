@@ -164,5 +164,10 @@ namespace 学生选课_成绩管理系统
                 MessageBox.Show(ee.ToString());
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
