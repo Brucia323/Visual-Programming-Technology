@@ -33,13 +33,13 @@ namespace 学生选课_成绩管理系统
                 //MessageBox.Show(sqlConnection.State.ToString());
                 string sql = "select name from department";//学院
                 sqlCommand.CommandText = sql;
-                SqlDataReader sqlDataReader1 = sqlCommand.ExecuteReader();
-                while (sqlDataReader1.Read())
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
                 {
-                    comboBox1.Items.Add(sqlDataReader1[0].ToString());
+                    comboBox1.Items.Add(sqlDataReader[0].ToString());
                 }
                 comboBox1.Text = (string)comboBox1.Items[0];
-                sqlDataReader1.Close();
+                sqlDataReader.Close();
 
                 sqlConnection.Close();
             }
@@ -66,13 +66,13 @@ namespace 学生选课_成绩管理系统
                 string sql = "select name from major where department=(select no from department where name=(@department))";//专业
                 sqlCommand.CommandText = sql;
                 sqlCommand.Parameters.Add("@department", SqlDbType.NVarChar, 255).Value = comboBox1.Text;
-                SqlDataReader sqlDataReader2 = sqlCommand.ExecuteReader();
-                while (sqlDataReader2.Read())
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
                 {
-                    comboBox2.Items.Add(sqlDataReader2[0].ToString());
+                    comboBox2.Items.Add(sqlDataReader[0].ToString());
                 }
                 comboBox2.Text = (string)comboBox2.Items[0];
-                sqlDataReader2.Close();
+                sqlDataReader.Close();
 
                 sqlConnection.Close();
             }
@@ -98,13 +98,13 @@ namespace 学生选课_成绩管理系统
                 string sql = "select name from class where major=(select no from major where name=(@major))";//班级
                 sqlCommand.CommandText = sql;
                 sqlCommand.Parameters.Add("@major", SqlDbType.NVarChar, 255).Value = comboBox2.Text;
-                SqlDataReader sqlDataReader3 = sqlCommand.ExecuteReader();
-                while (sqlDataReader3.Read())
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
                 {
-                    comboBox3.Items.Add(sqlDataReader3[0].ToString());
+                    comboBox3.Items.Add(sqlDataReader[0].ToString());
                 }
                 comboBox3.Text = (string)comboBox3.Items[0];
-                sqlDataReader3.Close();
+                sqlDataReader.Close();
 
                 sqlConnection.Close();
             }
