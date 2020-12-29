@@ -29,10 +29,30 @@ namespace 酒店客房管理系统_住宿登记
                 SqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString());
                 throw;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = Booking.SqlCommand.ExecuteReader();
+                    sqlDataReader.Read();
+                    comboBox1.Text = sqlDataReader[0].ToString();
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
     }
