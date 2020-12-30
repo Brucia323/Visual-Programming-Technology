@@ -9,7 +9,7 @@ namespace 酒店客房管理系统_住宿登记
 {
     public class RoomAvailable
     {
-        static string sql = "select count(*) from room where condition='空闲'";
+        static string sql = "SELECT COUNT(*) FROM room WHERE condition = '空闲'";
         public static SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
     }
 }
