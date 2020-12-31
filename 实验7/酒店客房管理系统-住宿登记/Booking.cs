@@ -9,6 +9,7 @@ namespace 酒店客房管理系统_住宿登记
 {
     public class Booking
     {
+        //获取预订的房型
         static string sql = "";
         public static SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
     }

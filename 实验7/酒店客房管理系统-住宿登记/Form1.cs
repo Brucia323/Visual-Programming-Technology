@@ -20,12 +20,16 @@ namespace 酒店客房管理系统_住宿登记
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //检查是否有房间
             try
             {
                 SQLConnection.SqlConnection.Open();
                 SqlDataReader SqlDataReader =RoomAvailable.SqlCommand.ExecuteReader();
-                if (!SqlDataReader.Read())
+                SqlDataReader.Read();
+                if (SqlDataReader[0].ToString()=="0")
                     MessageBox.Show("暂无空闲房间");
+                else
+                    MessageBox.Show("还有" + SqlDataReader[0].ToString() + "间房");
                 SqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
@@ -37,6 +41,7 @@ namespace 酒店客房管理系统_住宿登记
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            //获取预订的房型
             if (checkBox1.Checked == true)
             {
                 try
@@ -54,6 +59,11 @@ namespace 酒店客房管理系统_住宿登记
                     throw;
                 }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //根据房型选房间
         }
     }
 }
