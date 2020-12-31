@@ -21,12 +21,14 @@ namespace 酒店客房管理系统_住宿登记
         private void Form1_Load(object sender, EventArgs e)
         {
             //检查是否有房间
+            string sql = "SELECT COUNT(*) FROM room WHERE state = '空闲'";
+            SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
             try
             {
                 SQLConnection.SqlConnection.Open();
-                SqlDataReader SqlDataReader =RoomAvailable.SqlCommand.ExecuteReader();
+                SqlDataReader SqlDataReader = SqlCommand.ExecuteReader();
                 SqlDataReader.Read();
-                if (SqlDataReader[0].ToString()=="0")
+                if (SqlDataReader[0].ToString() == "0")
                     MessageBox.Show("暂无空闲房间");
                 else
                     MessageBox.Show("还有" + SqlDataReader[0].ToString() + "间房");
@@ -44,10 +46,12 @@ namespace 酒店客房管理系统_住宿登记
             //获取预订的房型
             if (checkBox1.Checked == true)
             {
+                string sql = "SELECT roomtype FROM book WHEERE";
+                SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
                 try
                 {
                     SQLConnection.SqlConnection.Open();
-                    SqlDataReader sqlDataReader = Booking.SqlCommand.ExecuteReader();
+                    SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
                     sqlDataReader.Read();
                     comboBox1.Text = sqlDataReader[0].ToString();
                     sqlDataReader.Close();
