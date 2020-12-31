@@ -55,7 +55,6 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
@@ -64,6 +63,21 @@ namespace 酒店客房管理系统_住宿登记
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //根据房型选房间
+            string sql = "SELECT no FROM room WHERE roomclass='" + comboBox1.Text + "'";
+            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                textBox8.Text = sqlDataReader[0].ToString();
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
