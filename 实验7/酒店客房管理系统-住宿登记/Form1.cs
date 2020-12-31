@@ -39,6 +39,22 @@ namespace 酒店客房管理系统_住宿登记
             {
                 throw;
             }
+            //筛选出有空闲房间的房型
+            sql = "SELECT DISTINCT roomtype FROM room WHERE state = '空闲'";
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
+                    comboBox1.Items.Add(sqlDataReader[0].ToString());
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            comboBox1.Text = (string)comboBox1.Items[0];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -46,7 +62,7 @@ namespace 酒店客房管理系统_住宿登记
             //获取预订的房型
             if (checkBox1.Checked == true)
             {
-                string sql = "SELECT roomtype FROM book WHEERE";
+                string sql = "SELECT roomtype FROM book WHEERE tel = '" + textBox1.Text + "'";
                 SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
                 try
                 {
@@ -67,7 +83,7 @@ namespace 酒店客房管理系统_住宿登记
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //根据房型选房间
-            string sql = "SELECT no FROM room WHERE roomclass='" + comboBox1.Text + "'";
+            string sql = "SELECT no FROM room WHERE roomclass = '" + comboBox1.Text + "' AND (state = '空闲' OR state = '已预定')";
             SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
             try
             {
@@ -82,6 +98,20 @@ namespace 酒店客房管理系统_住宿登记
             {
                 throw;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
         }
     }
 }
