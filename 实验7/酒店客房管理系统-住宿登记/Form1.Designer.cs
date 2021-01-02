@@ -269,6 +269,7 @@ namespace 酒店客房管理系统_住宿登记
             // 
             this.textBox8.Location = new System.Drawing.Point(69, 235);
             this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(121, 25);
             this.textBox8.TabIndex = 8;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
@@ -286,6 +287,7 @@ namespace 酒店客房管理系统_住宿登记
             // 
             this.textBox9.Location = new System.Drawing.Point(69, 291);
             this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(121, 25);
             this.textBox9.TabIndex = 10;
             // 

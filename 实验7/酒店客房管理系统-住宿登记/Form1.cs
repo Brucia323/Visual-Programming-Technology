@@ -29,7 +29,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     label12.Text = "还有" + SqlDataReader[0].ToString() + "间房";
                 }
-
                 SqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
@@ -38,7 +37,7 @@ namespace 酒店客房管理系统_住宿登记
                 throw;
             }
             //筛选出有空闲房间的房型
-            sql = "SELECT DISTINCT roomtype FROM room WHERE state = '空闲'";
+            sql = "SELECT DISTINCT roomtype FROM room WHERE state like '空闲'";
             SqlCommand.CommandText = sql;
             try
             {
@@ -48,7 +47,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     comboBox1.Items.Add(sqlDataReader[0].ToString());
                 }
-
+                comboBox1.Text = (string)comboBox1.Items[0];
                 sqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
@@ -56,7 +55,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 throw;
             }
-            comboBox1.Text = (string)comboBox1.Items[0];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -109,7 +107,6 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -125,7 +122,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     SQLConnection.SqlConnection.Open();
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                    if (sqlDataReader.Read())
+                    while (sqlDataReader.Read())
                         textBox8.Text = sqlDataReader[0].ToString();
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
