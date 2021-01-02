@@ -47,7 +47,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     comboBox1.Items.Add(sqlDataReader[0].ToString());
                 }
-                comboBox1.Text = (string)comboBox1.Items[0];
+                comboBox1.Text = comboBox1.Items[0].ToString();
                 sqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
@@ -94,24 +94,10 @@ namespace 酒店客房管理系统_住宿登记
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-            string sql = "SELECT price FROM room WHERE no = '" + textBox8.Text + "'";
-            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-            try
-            {
-                SQLConnection.SqlConnection.Open();
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                sqlDataReader.Read();
-                textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95);
-                sqlDataReader.Close();
-                SQLConnection.SqlConnection.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
-        private void comboBox1_TextChanged(object sender, EventArgs e)
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //根据房型选房间
             if (!checkBox1.Checked)
@@ -123,7 +109,8 @@ namespace 酒店客房管理系统_住宿登记
                     SQLConnection.SqlConnection.Open();
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                     while (sqlDataReader.Read())
-                        textBox8.Text = sqlDataReader[0].ToString();
+                        comboBox2.Items.Add(sqlDataReader[0].ToString());
+                    comboBox2.Text = comboBox2.Items[0].ToString();
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
                 }
@@ -140,8 +127,9 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     SQLConnection.SqlConnection.Open();
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                    sqlDataReader.Read();
-                    textBox8.Text = sqlDataReader[0].ToString();
+                    while (sqlDataReader.Read())
+                        comboBox2.Items.Add(sqlDataReader[0].ToString());
+                    comboBox2.Text = comboBox2.Items[0].ToString();
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
                 }
@@ -151,6 +139,25 @@ namespace 酒店客房管理系统_住宿登记
                 }
             }
 
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sql = "SELECT price FROM room WHERE no = '" + comboBox2.Text + "'";
+            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95);
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
