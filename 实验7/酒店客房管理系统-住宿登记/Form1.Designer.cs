@@ -54,11 +54,11 @@ namespace 酒店客房管理系统_住宿登记
             this.label11 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label12 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -245,7 +245,7 @@ namespace 酒店客房管理系统_住宿登记
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
             // 
             // label9
             // 
@@ -269,7 +269,6 @@ namespace 酒店客房管理系统_住宿登记
             // 
             this.textBox8.Location = new System.Drawing.Point(69, 235);
             this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(121, 25);
             this.textBox8.TabIndex = 8;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
@@ -287,7 +286,6 @@ namespace 酒店客房管理系统_住宿登记
             // 
             this.textBox9.Location = new System.Drawing.Point(69, 291);
             this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(121, 25);
             this.textBox9.TabIndex = 10;
             // 
@@ -322,6 +320,14 @@ namespace 酒店客房管理系统_住宿登记
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 537;
             this.splitContainer1.TabIndex = 11;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(12, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 15);
+            this.label12.TabIndex = 5;
             // 
             // numericUpDown1
             // 
@@ -361,14 +367,6 @@ namespace 酒店客房管理系统_住宿登记
             this.button1.TabIndex = 11;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 9);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(0, 15);
-            this.label12.TabIndex = 5;
             // 
             // Form1
             // 
