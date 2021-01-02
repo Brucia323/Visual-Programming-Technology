@@ -47,7 +47,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     comboBox1.Items.Add(sqlDataReader[0].ToString());
                 }
-                comboBox1.Text = comboBox1.Items[0].ToString();
                 sqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
@@ -55,29 +54,7 @@ namespace 酒店客房管理系统_住宿登记
             {
                 throw;
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            //获取预订的房型
-            if (checkBox1.Checked == true)
-            {
-                string sql = "SELECT roomtype FROM book WHEERE tel = '" + textBox1.Text + "'";
-                SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
-                {
-                    SQLConnection.SqlConnection.Open();
-                    SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
-                    sqlDataReader.Read();
-                    comboBox1.Text = sqlDataReader[0].ToString();
-                    sqlDataReader.Close();
-                    SQLConnection.SqlConnection.Close();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
+            comboBox1.Text = comboBox1.Items[0].ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -92,13 +69,9 @@ namespace 酒店客房管理系统_住宿登记
             textBox7.Text = "";
         }
 
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBox2.Items.Clear();
             //根据房型选房间
             if (!checkBox1.Checked)
             {
@@ -110,7 +83,6 @@ namespace 酒店客房管理系统_住宿登记
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                     while (sqlDataReader.Read())
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
-                    comboBox2.Text = comboBox2.Items[0].ToString();
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
                 }
@@ -118,6 +90,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     throw;
                 }
+                comboBox2.Text = comboBox2.Items[0].ToString();
             }
             else
             {
@@ -129,7 +102,6 @@ namespace 酒店客房管理系统_住宿登记
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                     while (sqlDataReader.Read())
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
-                    comboBox2.Text = comboBox2.Items[0].ToString();
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
                 }
@@ -137,6 +109,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     throw;
                 }
+                comboBox2.Text = comboBox2.Items[0].ToString();
             }
 
         }
@@ -157,6 +130,29 @@ namespace 酒店客房管理系统_住宿登记
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            //获取预订的房型
+            if (checkBox1.Checked == true)
+            {
+                string sql = "SELECT roomtype FROM book WHEERE tel = '" + textBox1.Text + "'";
+                SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+                    sqlDataReader.Read();
+                    comboBox1.Text = sqlDataReader[0].ToString();
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
     }
