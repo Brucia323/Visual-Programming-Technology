@@ -58,6 +58,7 @@ namespace 酒店客房管理系统_住宿登记
             this.label8 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -271,6 +272,7 @@ namespace 酒店客房管理系统_住宿登记
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(121, 25);
             this.textBox8.TabIndex = 8;
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label11
             // 
@@ -297,6 +299,7 @@ namespace 酒店客房管理系统_住宿登记
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label12);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
@@ -359,6 +362,14 @@ namespace 酒店客房管理系统_住宿登记
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(12, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 15);
+            this.label12.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -368,6 +379,7 @@ namespace 酒店客房管理系统_住宿登记
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "住宿登记";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -418,6 +430,7 @@ namespace 酒店客房管理系统_住宿登记
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label12;
     }
 }
 

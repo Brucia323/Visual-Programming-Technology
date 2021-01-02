@@ -29,9 +29,9 @@ namespace 酒店客房管理系统_住宿登记
                 SqlDataReader SqlDataReader = SqlCommand.ExecuteReader();
                 SqlDataReader.Read();
                 if (SqlDataReader[0].ToString() == "0")
-                    MessageBox.Show("暂无空闲房间");
+                    label12.Text = "暂无空闲房间";
                 else
-                    MessageBox.Show("还有" + SqlDataReader[0].ToString() + "间房");
+                    label12.Text = "还有" + SqlDataReader[0].ToString() + "间房";
                 SqlDataReader.Close();
                 SQLConnection.SqlConnection.Close();
             }
@@ -41,6 +41,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             //筛选出有空闲房间的房型
             sql = "SELECT DISTINCT roomtype FROM room WHERE state = '空闲'";
+            SqlCommand.CommandText = sql;
             try
             {
                 SQLConnection.SqlConnection.Open();
@@ -55,6 +56,23 @@ namespace 酒店客房管理系统_住宿登记
                 throw;
             }
             comboBox1.Text = (string)comboBox1.Items[0];
+            sql = "SELECT price FROM room WHERE no = '" + textBox8.Text + "'";
+            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0].ToString()) * 0.95);
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -83,20 +101,41 @@ namespace 酒店客房管理系统_住宿登记
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //根据房型选房间
-            string sql = "SELECT no FROM room WHERE roomclass = '" + comboBox1.Text + "' AND (state = '空闲' OR state = '已预定')";
-            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-            try
+            if (!checkBox1.Checked)
             {
-                SQLConnection.SqlConnection.Open();
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                sqlDataReader.Read();
-                textBox8.Text = sqlDataReader[0].ToString();
-                sqlDataReader.Close();
-                SQLConnection.SqlConnection.Close();
+                string sql = "SELECT no FROM room WHERE roomtype = '" + comboBox1.Text + "' AND state = '空闲'";
+                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlDataReader.Read();
+                    textBox8.Text = sqlDataReader[0].ToString();
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
             }
-            catch (Exception)
+            else
             {
-                throw;
+                string sql = "SELECT no FROM room WHERE roomtype = '" + comboBox1.Text + "' AND state = '已预定'";
+                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlDataReader.Read();
+                    textBox8.Text = sqlDataReader[0].ToString();
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
             }
         }
 
@@ -110,8 +149,26 @@ namespace 酒店客房管理系统_住宿登记
             textBox5.Text = "";
             textBox6.Text = "";
             textBox7.Text = "";
-            textBox8.Text = "";
-            textBox9.Text = "";
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            string sql = "SELECT price FROM room WHERE no = '" + textBox8.Text + "'";
+            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95);
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
