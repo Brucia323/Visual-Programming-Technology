@@ -36,7 +36,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                throw;
+                //throw;
             }
             //筛选出有空闲房间的房型
             sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
@@ -54,11 +54,11 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                throw;
+                //throw;
             }
             try
             {
-            comboBox1.Text = comboBox1.Items[0].ToString();
+                comboBox1.Text = comboBox1.Items[0].ToString();
             }
             catch (Exception)
             {
@@ -92,15 +92,21 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
                 }
-                comboBox2.Text = comboBox2.Items[0].ToString();
+                try
+                {
+                    comboBox2.Text = comboBox2.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
             }
             else
             {
@@ -114,13 +120,12 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     SQLConnection.SqlConnection.Close();
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
                 }
                 try
                 {
@@ -128,7 +133,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
                 }
             }
         }
@@ -149,7 +154,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                throw;
+                //throw;
             }
         }
 
@@ -178,7 +183,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
                 }
             }
         }
@@ -199,13 +204,15 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                throw;
+                //throw;
             }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+            textBox9.Text = "";
             if (checkBox1.Checked)
             {//筛选出有已预定房间的房型
                 string sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '已预定'";
@@ -223,9 +230,16 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
                 }
-                comboBox1.Text = comboBox1.Items[0].ToString();
+                try
+                {
+                    comboBox1.Text = comboBox1.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
             }
             else
             {
@@ -245,73 +259,72 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
                 }
-                comboBox1.Text = comboBox1.Items[0].ToString();
+                try
+                {
+                    comboBox1.Text = comboBox1.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string sql;
-            if (textBox2.Text != "" && textBox3.Text != "" && textBox4.Text == "" && textBox5.Text == "")
+            if (numericUpDown1.Value == 0)
             {
-                sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox2.Text + "', '" + textBox3.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
-                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
-                {
-                    SQLConnection.SqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    SQLConnection.SqlConnection.Close();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                MessageBox.Show("天数为0");
             }
-            else if (textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "")
+            else
             {
-                sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox2.Text + "', '" + textBox3.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
-                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
+                if (textBox2.Text != "" && textBox3.Text != "" && textBox4.Text == "" && textBox5.Text == "")
                 {
-                    SQLConnection.SqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    SQLConnection.SqlConnection.Close();
+                    sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox2.Text + "', '" + textBox3.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
+                    SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                    try
+                    {
+                        SQLConnection.SqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        SQLConnection.SqlConnection.Close();
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
                 }
-                catch (Exception)
+                else if (textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "")
                 {
-                    throw;
+                    sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox2.Text + "', '" + textBox3.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
+                    SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                    try
+                    {
+                        SQLConnection.SqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        SQLConnection.SqlConnection.Close();
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
+                    sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox4.Text + "', '" + textBox5.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
+                    sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                    try
+                    {
+                        SQLConnection.SqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        SQLConnection.SqlConnection.Close();
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
                 }
-                sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox4.Text + "', '" + textBox5.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
-                sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
-                {
-                    SQLConnection.SqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    SQLConnection.SqlConnection.Close();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            sql = "UPDATE room SET [state] = '已入住' WHERE number = '" + comboBox2.Text + "'";
-            SqlCommand sqlCommand1 = new SqlCommand(sql, SQLConnection.SqlConnection);
-            try
-            {
-                SQLConnection.SqlConnection.Open();
-                sqlCommand1.ExecuteNonQuery();
-                SQLConnection.SqlConnection.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            if (checkBox1.Checked)
-            {
-                sql = "UPDATE book SET [state] = '已入住' WHERE tel = '" + textBox1.Text + "'";
-                sqlCommand1.CommandText = sql;
+                sql = "UPDATE room SET [state] = '已入住' WHERE number = '" + comboBox2.Text + "'";
+                SqlCommand sqlCommand1 = new SqlCommand(sql, SQLConnection.SqlConnection);
                 try
                 {
                     SQLConnection.SqlConnection.Open();
@@ -320,16 +333,84 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    throw;
+                    //throw;
+                }
+                if (checkBox1.Checked)
+                {
+                    sql = "UPDATE book SET [state] = '已入住' WHERE tel = '" + textBox1.Text + "'";
+                    sqlCommand1.CommandText = sql;
+                    try
+                    {
+                        SQLConnection.SqlConnection.Open();
+                        sqlCommand1.ExecuteNonQuery();
+                        SQLConnection.SqlConnection.Close();
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
+                }
+                MessageBox.Show("登记成功");
+                checkBox1.Checked = false;
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
+                comboBox1.Items.Clear();
+                comboBox2.Items.Clear();
+                textBox9.Text = "";
+                //检查是否有房间
+                sql = "SELECT COUNT(*) FROM room WHERE [state] = '空闲'";
+                SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader SqlDataReader = SqlCommand.ExecuteReader();
+                    SqlDataReader.Read();
+                    if (SqlDataReader[0].ToString() == "0")
+                    {
+                        label12.Text = "暂无空闲房间";
+                        label12.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        label12.Text = "还有" + SqlDataReader[0].ToString() + "间房";
+                    }
+                    SqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
+                //筛选出有空闲房间的房型
+                sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
+                SqlCommand.CommandText = sql;
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        comboBox1.Items.Add(sqlDataReader[0].ToString());
+                    }
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
+                try
+                {
+                    comboBox1.Text = comboBox1.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    //throw;
                 }
             }
-            MessageBox.Show("登记成功");
-            checkBox1.Checked = false;
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            textBox5.Text = "";
         }
     }
 }
