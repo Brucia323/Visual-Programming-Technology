@@ -78,6 +78,7 @@ namespace 酒店客房管理系统_住宿登记
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "是否预订入住";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -338,6 +339,7 @@ namespace 酒店客房管理系统_住宿登记
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 25);
             this.numericUpDown1.TabIndex = 14;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label8
             // 
