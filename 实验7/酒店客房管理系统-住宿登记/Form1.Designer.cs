@@ -70,7 +70,7 @@ namespace 酒店客房管理系统_住宿登记
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(119, 19);
             this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "是否预订入住";
+            this.checkBox1.Text = "是否预定入住";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
