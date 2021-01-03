@@ -110,7 +110,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             else
             {
-                string sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预定'";
+                string sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
                 SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
                 try
                 {
@@ -175,7 +175,7 @@ namespace 酒店客房管理系统_住宿登记
                     }
                     else
                     {
-                        MessageBox.Show("无预定信息，可能是联系方式输入错误，请重新输入");
+                        MessageBox.Show("无预订信息，可能是联系方式输入错误，请重新输入");
                         textBox1.Text = "";
                     }
                     sqlDataReader.Close();
@@ -214,8 +214,8 @@ namespace 酒店客房管理系统_住宿登记
             comboBox2.Items.Clear();
             textBox9.Text = "";
             if (checkBox1.Checked)
-            {//筛选出有已预定房间的房型
-                string sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '已预定'";
+            {//筛选出有已预订房间的房型
+                string sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '已预订'";
                 SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
                 try
                 {
