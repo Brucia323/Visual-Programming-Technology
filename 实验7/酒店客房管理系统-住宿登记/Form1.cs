@@ -214,7 +214,10 @@ namespace 酒店客房管理系统_住宿登记
             comboBox2.Items.Clear();
             textBox9.Text = "";
             if (checkBox1.Checked)
-            {//筛选出有已预订房间的房型
+            {
+                label1.Visible = true;
+                textBox1.Visible = true;
+                //筛选出有已预订房间的房型
                 string sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '已预订'";
                 SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
                 try
@@ -243,6 +246,8 @@ namespace 酒店客房管理系统_住宿登记
             }
             else
             {
+                label1.Visible = false;
+                textBox1.Visible = false;
                 //筛选出有空闲房间的房型
                 string sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
                 SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);

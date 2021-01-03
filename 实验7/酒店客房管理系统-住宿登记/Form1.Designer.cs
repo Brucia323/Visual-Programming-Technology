@@ -127,6 +127,7 @@ namespace 酒店客房管理系统_住宿登记
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 25);
             this.textBox1.TabIndex = 4;
+            this.textBox1.Visible = false;
             this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
@@ -137,6 +138,7 @@ namespace 酒店客房管理系统_住宿登记
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "联系方式";
+            this.label1.Visible = false;
             // 
             // groupBox2
             // 
