@@ -36,7 +36,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                //throw;
+                throw;
             }
             //筛选出有空闲房间的房型
             sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
@@ -54,7 +54,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                //throw;
+                throw;
             }
             try
             {
@@ -62,8 +62,51 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                //throw;
+                throw;
             }
+            //根据房型选房间
+            sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
+            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+                    comboBox2.Items.Add(sqlDataReader[0].ToString());
+                }
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            try
+            {
+                comboBox2.Text = comboBox2.Items[0].ToString();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            //预交金计算
+            sql = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
+            sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,72 +119,60 @@ namespace 酒店客房管理系统_住宿登记
             textBox5.Text = "";
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void textBox1_Leave(object sender, EventArgs e)
         {
+            //获取预订的房型
+            string sql = "SELECT roomtype FROM book WHERE tel = '" + textBox1.Text + "'";
+            SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+                if (sqlDataReader.Read())
+                {
+                    comboBox1.Text = sqlDataReader[0].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("无预订信息，可能是联系方式输入错误，请重新输入");
+                    textBox1.Text = "";
+                }
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             comboBox2.Items.Clear();
             //根据房型选房间
-            if (!checkBox1.Checked)
+            sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
+            SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
             {
-                string sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
-                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
                 {
-                    SQLConnection.SqlConnection.Open();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                    while (sqlDataReader.Read())
-                    {
-                        comboBox2.Items.Add(sqlDataReader[0].ToString());
-                    }
-                    sqlDataReader.Close();
-                    SQLConnection.SqlConnection.Close();
+                    comboBox2.Items.Add(sqlDataReader[0].ToString());
                 }
-                catch (Exception)
-                {
-                    //throw;
-                }
-                try
-                {
-                    comboBox2.Text = comboBox2.Items[0].ToString();
-                }
-                catch (Exception)
-                {
-                    //throw;
-                }
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
             }
-            else
+            catch (Exception)
             {
-                string sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
-                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
-                {
-                    SQLConnection.SqlConnection.Open();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                    while (sqlDataReader.Read())
-                    {
-                        comboBox2.Items.Add(sqlDataReader[0].ToString());
-                    }
-                    sqlDataReader.Close();
-                    SQLConnection.SqlConnection.Close();
-                }
-                catch (Exception)
-                {
-                    //throw;
-                }
-                try
-                {
-                    comboBox2.Text = comboBox2.Items[0].ToString();
-                }
-                catch (Exception)
-                {
-                    //throw;
-                }
+                throw;
             }
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            try
+            {
+                comboBox2.Text = comboBox2.Items[0].ToString();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             //预交金计算
-            string sql = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
+            sql = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
             SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
             try
             {
@@ -154,38 +185,9 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                //throw;
+                throw;
             }
-        }
 
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            //获取预订的房型
-            if (checkBox1.Checked == true)
-            {
-                string sql = "SELECT roomtype FROM book WHERE tel = '" + textBox1.Text + "'";
-                SqlCommand SqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
-                try
-                {
-                    SQLConnection.SqlConnection.Open();
-                    SqlDataReader sqlDataReader = SqlCommand.ExecuteReader();
-                    if (sqlDataReader.Read())
-                    {
-                        MessageBox.Show("预订的是" + sqlDataReader[0].ToString());
-                    }
-                    else
-                    {
-                        MessageBox.Show("无预订信息，可能是联系方式输入错误，请重新输入");
-                        textBox1.Text = "";
-                    }
-                    sqlDataReader.Close();
-                    SQLConnection.SqlConnection.Close();
-                }
-                catch (Exception)
-                {
-                    //throw;
-                }
-            }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -204,7 +206,7 @@ namespace 酒店客房管理系统_住宿登记
             }
             catch (Exception)
             {
-                //throw;
+                throw;
             }
         }
 
@@ -233,7 +235,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
                 try
                 {
@@ -241,12 +243,57 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
+                comboBox2.Items.Clear();
+                //根据房型选房间
+                sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
+                sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        comboBox2.Items.Add(sqlDataReader[0].ToString());
+                    }
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                try
+                {
+                    comboBox2.Text = comboBox2.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                //预交金计算
+                sql = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
+                sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlDataReader.Read();
+                    textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
             }
             else
             {
                 label1.Visible = false;
+                textBox1.Text = "";
                 textBox1.Visible = false;
                 //筛选出有空闲房间的房型
                 string sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
@@ -264,7 +311,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
                 try
                 {
@@ -272,8 +319,51 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
+                //根据房型选房间
+                sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
+                sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        comboBox2.Items.Add(sqlDataReader[0].ToString());
+                    }
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                try
+                {
+                    comboBox2.Text = comboBox2.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                //预交金计算
+                sql = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
+                sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlDataReader.Read();
+                    textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
             }
         }
 
@@ -298,7 +388,7 @@ namespace 酒店客房管理系统_住宿登记
                     }
                     catch (Exception)
                     {
-                        //throw;
+                        throw;
                     }
                 }
                 else if (textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "")
@@ -313,7 +403,7 @@ namespace 酒店客房管理系统_住宿登记
                     }
                     catch (Exception)
                     {
-                        //throw;
+                        throw;
                     }
                     sql = "INSERT INTO Accommodation(Number, Name, ID, Stay, [Date], AdvancePayment, Rno, [State]) VALUES ((SELECT COUNT(*) FROM Accommodation) + 1, '" + textBox4.Text + "', '" + textBox5.Text + "', " + numericUpDown1.Value + ", '" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "', '" + textBox9.Text + "', '" + comboBox2.Text + "', '已入住')";
                     sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
@@ -325,7 +415,7 @@ namespace 酒店客房管理系统_住宿登记
                     }
                     catch (Exception)
                     {
-                        //throw;
+                        throw;
                     }
                 }
                 sql = "UPDATE room SET [state] = '已入住' WHERE number = '" + comboBox2.Text + "'";
@@ -338,7 +428,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
                 if (checkBox1.Checked)
                 {
@@ -352,7 +442,7 @@ namespace 酒店客房管理系统_住宿登记
                     }
                     catch (Exception)
                     {
-                        //throw;
+                        throw;
                     }
                 }
                 MessageBox.Show("登记成功");
@@ -387,7 +477,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
                 //筛选出有空闲房间的房型
                 sql = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
@@ -405,7 +495,7 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
                 try
                 {
@@ -413,8 +503,90 @@ namespace 酒店客房管理系统_住宿登记
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    throw;
                 }
+            }
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            comboBox2.Items.Clear();
+            //根据房型选房间
+            if (!checkBox1.Checked)
+            {
+                string sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
+                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        comboBox2.Items.Add(sqlDataReader[0].ToString());
+                    }
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                try
+                {
+                    comboBox2.Text = comboBox2.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            else
+            {
+                string sql = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
+                SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+                try
+                {
+                    SQLConnection.SqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        comboBox2.Items.Add(sqlDataReader[0].ToString());
+                    }
+                    sqlDataReader.Close();
+                    SQLConnection.SqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                try
+                {
+                    comboBox2.Text = comboBox2.Items[0].ToString();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        private void comboBox2_DropDownClosed(object sender, EventArgs e)
+        {
+            //预交金计算
+            string sql = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
+            SqlCommand sqlCommand = new SqlCommand(sql, SQLConnection.SqlConnection);
+            try
+            {
+                SQLConnection.SqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.Read();
+                textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
+                sqlDataReader.Close();
+                SQLConnection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
