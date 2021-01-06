@@ -10,6 +10,6 @@ namespace 酒店客房管理系统_住宿登记
     public class SQLConnection
     {
         //连接数据库
-        public static SqlConnection SqlConnection = new SqlConnection(@"server=.;database=JDKFGLXT;integrated security=sspi");
+        public static SqlConnection sqlConnection = new SqlConnection(@"server=.;database=JDKFGLXT;integrated security=sspi");
     }
 }
