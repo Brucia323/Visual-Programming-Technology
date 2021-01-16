@@ -32,7 +32,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     label12.Text = "还有" + SqlDataReader[0].ToString() + "间房";
                 }
-
                 SqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -40,7 +39,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             //筛选出有空闲房间的房型
             sqlCommand.CommandText = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
             try
@@ -51,7 +49,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     comboBox1.Items.Add(sqlDataReader[0].ToString());
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -59,7 +56,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             try
             {
                 comboBox1.Text = comboBox1.Items[0].ToString();
@@ -68,7 +64,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             //根据房型选房间
             sqlCommand.CommandText = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
             try
@@ -79,7 +74,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     comboBox2.Items.Add(sqlDataReader[0].ToString());
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -87,7 +81,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             try
             {
                 comboBox2.Text = comboBox2.Items[0].ToString();
@@ -96,7 +89,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             //预交金计算
             sqlCommand.CommandText = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
             try
@@ -107,7 +99,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -115,7 +106,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -146,7 +136,6 @@ namespace 酒店客房管理系统_住宿登记
                     MessageBox.Show("无预订信息，可能是联系方式输入错误，请重新输入");
                     textBox1.Text = "";
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -154,7 +143,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             //根据房型选房间
             sqlCommand.CommandText = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
             try
@@ -165,7 +153,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     comboBox2.Items.Add(sqlDataReader[0].ToString());
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -173,7 +160,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             try
             {
                 comboBox2.Text = comboBox2.Items[0].ToString();
@@ -182,7 +168,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
             //预交金计算
             sqlCommand.CommandText = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
             try
@@ -193,7 +178,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -201,7 +185,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -216,7 +199,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -224,7 +206,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -246,7 +227,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox1.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -254,7 +234,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox1.Text = comboBox1.Items[0].ToString();
@@ -263,7 +242,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 comboBox2.Items.Clear();
                 //根据房型选房间
                 sqlCommand.CommandText = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '已预订'";
@@ -275,7 +253,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -283,7 +260,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox2.Text = comboBox2.Items[0].ToString();
@@ -292,7 +268,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 //预交金计算
                 sqlCommand.CommandText = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
                 try
@@ -303,7 +278,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -311,7 +285,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
             }
             else
             {
@@ -328,7 +301,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox1.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -336,7 +308,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox1.Text = comboBox1.Items[0].ToString();
@@ -345,7 +316,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 //根据房型选房间
                 sqlCommand.CommandText = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
                 try
@@ -356,7 +326,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -364,7 +333,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox2.Text = comboBox2.Items[0].ToString();
@@ -373,7 +341,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 //预交金计算
                 sqlCommand.CommandText = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
                 try
@@ -384,7 +351,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -392,9 +358,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -403,7 +367,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 MessageBox.Show("无法确认");
             }
-
             else if (numericUpDown1.Value == 0)
             {
                 MessageBox.Show("天数为0");
@@ -423,7 +386,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         //throw;
                     }
-
                 }
                 if (textBox4.Text != "" && textBox5.Text != "")
                 {
@@ -438,7 +400,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         //throw;
                     }
-
                 }
                 sqlCommand.CommandText = "UPDATE room SET [state] = '已入住' WHERE number = '" + comboBox2.Text + "'";
                 try
@@ -451,7 +412,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 if (checkBox1.Checked)
                 {
                     sqlCommand.CommandText = "UPDATE book SET [state] = '已入住' WHERE tel = '" + textBox1.Text + "'";
@@ -465,7 +425,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         //throw;
                     }
-
                 }
                 MessageBox.Show("登记成功");
                 checkBox1.Checked = false;
@@ -493,7 +452,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         label12.Text = "还有" + SqlDataReader[0].ToString() + "间房";
                     }
-
                     SqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -501,7 +459,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 //筛选出有空闲房间的房型
                 sqlCommand.CommandText = "SELECT DISTINCT roomtype FROM room WHERE [state] = '空闲'";
                 try
@@ -512,7 +469,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox1.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -520,7 +476,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox1.Text = comboBox1.Items[0].ToString();
@@ -529,7 +484,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 //根据房型选房间
                 sqlCommand.CommandText = "SELECT number FROM room WHERE roomtype = '" + comboBox1.Text + "' AND [state] = '空闲'";
                 try
@@ -540,7 +494,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -548,7 +501,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox2.Text = comboBox2.Items[0].ToString();
@@ -557,7 +509,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 //预交金计算
                 sqlCommand.CommandText = "SELECT price FROM room WHERE number = '" + comboBox2.Text + "'";
                 try
@@ -568,7 +519,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -576,9 +526,7 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
             }
-
         }
 
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
@@ -596,7 +544,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -604,7 +551,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox2.Text = comboBox2.Items[0].ToString();
@@ -613,7 +559,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
             }
             else
             {
@@ -626,7 +571,6 @@ namespace 酒店客房管理系统_住宿登记
                     {
                         comboBox2.Items.Add(sqlDataReader[0].ToString());
                     }
-
                     sqlDataReader.Close();
                     sqlConnection.Close();
                 }
@@ -634,7 +578,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     //throw;
                 }
-
                 try
                 {
                     comboBox2.Text = comboBox2.Items[0].ToString();
@@ -658,7 +601,6 @@ namespace 酒店客房管理系统_住宿登记
                 {
                     textBox9.Text = Convert.ToString(Convert.ToDouble(sqlDataReader[0]) * 0.95 * Convert.ToDouble(numericUpDown1.Value));
                 }
-
                 sqlDataReader.Close();
                 sqlConnection.Close();
             }
@@ -666,9 +608,6 @@ namespace 酒店客房管理系统_住宿登记
             {
                 //throw;
             }
-
         }
-
     }
-
 }
