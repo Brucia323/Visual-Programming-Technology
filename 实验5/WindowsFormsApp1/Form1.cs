@@ -141,7 +141,7 @@ namespace WindowsFormsApp1
             {
                 this.Hide(); //先隐藏主窗体
                 Form1 form1 = new Form1(); //重新实例化此窗体
-                form1.ShowDialog();//已模式窗体的方法重新打开
+                form1.ShowDialog();//以模式窗体的方法重新打开
                 this.Close();//原窗体关闭
             }
 
