@@ -1,4 +1,4 @@
-# 实验3  对象实例调试
+# 实验 3 对象实例调试
 
 ## 一、实验目的
 
@@ -8,7 +8,7 @@
 
 ## 二、实验时间和地点
 
-学时：2学时
+学时：2 学时
 
 ## 三、实验内容
 
@@ -16,36 +16,36 @@
 
 （1）创建一个大学生类，设计类，并添加成员属性和成员方法。  
 （2）为大学生类添加构造方法和析构方法  
-（3）创建两个大学生对象，并为各对象设置属性值，最后调用方法。程序运行效果如图1所示。  
+（3）创建两个大学生对象，并为各对象设置属性值，最后调用方法。程序运行效果如图 1 所示。  
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215843643-85a2d72b-93bb-4cac-9b6c-1197aa21e530.png#)  
-图1 类和对象的创建
+图 1 类和对象的创建
 
 ### 2、类的继承特征
 
 （1）编写应用程序，初步实现员工信息管理的功能
 
-1）  定义一个员工类Employee，员工类中包括私有成员：workNum（工号）、name（姓名）、basicSalary（基本工资）、rewards（奖金）、employeeNum（静态成员：总员工人数）；  
-2）  在类中添加公有方法：CalTotalSalary（计算应发工资，基本工资+奖金）、DisplayEmployeeInfo（显示员工当前信息）、DisplayEmployeeNumber（显示总员工人数）  
-3）  在类Employee中添加相应的公有属性，WorkNum（工号）、Name（姓名）、BasicSalary（基本工资）、Rewards（奖金）、Salary（应发工资，只读）；  
-4）  类中同时包含函数：Employee（构造函数）、~Employee（析构函数）。其中，构造函数为Employee类的对象赋值并将员工人数加1，以实现对象的初始化，析构函数计算员工人数减1，显示当前人数信息。  
-5）  创建一个类Employee的对象并调用四个公有方法。  
-6） 创建一组类Employee的对象并调用相应的方法设置和显示各对象信息。（提示：可以通过创建ArrayList类对象，每创建一个Employee对象，通过ArrayList的add方法将对象加到列表中）
+1） 定义一个员工类 Employee，员工类中包括私有成员：workNum（工号）、name（姓名）、basicSalary（基本工资）、rewards（奖金）、employeeNum（静态成员：总员工人数）；  
+2） 在类中添加公有方法：CalTotalSalary（计算应发工资，基本工资+奖金）、DisplayEmployeeInfo（显示员工当前信息）、DisplayEmployeeNumber（显示总员工人数）  
+3） 在类 Employee 中添加相应的公有属性，WorkNum（工号）、Name（姓名）、BasicSalary（基本工资）、Rewards（奖金）、Salary（应发工资，只读）；  
+4） 类中同时包含函数：Employee（构造函数）、~Employee（析构函数）。其中，构造函数为 Employee 类的对象赋值并将员工人数加 1，以实现对象的初始化，析构函数计算员工人数减 1，显示当前人数信息。  
+5） 创建一个类 Employee 的对象并调用四个公有方法。  
+6） 创建一组类 Employee 的对象并调用相应的方法设置和显示各对象信息。（提示：可以通过创建 ArrayList 类对象，每创建一个 Employee 对象，通过 ArrayList 的 add 方法将对象加到列表中）
 
-（2）基于（1）题中的员工类派生定义部门经理类DepartManager：  
-1）  定义私有成员：nameDepart（部门名称）、performanceSalary（经理绩效工资）  
-2）  定义构造函数和析构函数，构造函数DepartManager（）初始化经理类成员，析构函数~ DepartManager（）显示当前经理离职信息  
-3）  在类DepartManager中添加相应的公有属性，NameDepart（部门名称，只读）、PerformanceSalary（经理绩效工资）  
-4）  重写方法CalTotalSalary（计算经理应发工资，基本工资+奖金+经理绩效工资）  
-5）  重写方法DisplayEmployeeInfo（显示经理当前信息）  
-6）  创建DepartManager的对象dm并调用新定义的两个公有方法  
-7） 试着把dm也加到数组列表中，并将Employee类中的DisplayEmployeeInfo前面加virtual，将DepartManager类中的DisplayEmployeeInfo前加override，看看运行结果如何，思考一下，它反映了面向对象编程中的什么特征？（将思考结果作为注释写在该方法的定义之前）
+（2）基于（1）题中的员工类派生定义部门经理类 DepartManager：  
+1） 定义私有成员：nameDepart（部门名称）、performanceSalary（经理绩效工资）  
+2） 定义构造函数和析构函数，构造函数 DepartManager（）初始化经理类成员，析构函数~ DepartManager（）显示当前经理离职信息  
+3） 在类 DepartManager 中添加相应的公有属性，NameDepart（部门名称，只读）、PerformanceSalary（经理绩效工资）  
+4） 重写方法 CalTotalSalary（计算经理应发工资，基本工资+奖金+经理绩效工资）  
+5） 重写方法 DisplayEmployeeInfo（显示经理当前信息）  
+6） 创建 DepartManager 的对象 dm 并调用新定义的两个公有方法  
+7） 试着把 dm 也加到数组列表中，并将 Employee 类中的 DisplayEmployeeInfo 前面加 virtual，将 DepartManager 类中的 DisplayEmployeeInfo 前加 override，看看运行结果如何，思考一下，它反映了面向对象编程中的什么特征？（将思考结果作为注释写在该方法的定义之前）
 
 ### 3、类的多态特征
 
-定义一个“计算”类，定义四个同名方法GetSum()，用于接收传递参数并对传递参数值进行求和运算，四个函数根据参数个数不同或参数类型不同进行区分。程序运行效果如图3所示。  
+定义一个“计算”类，定义四个同名方法 GetSum()，用于接收传递参数并对传递参数值进行求和运算，四个函数根据参数个数不同或参数类型不同进行区分。程序运行效果如图 3 所示。  
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215843984-e2cd44a4-9937-4557-9e8c-2a17e453a504.png#)  
-图4 属性封装的应用  
-4.创建一个图形类，包括计算图形面积和周长的方法（只有方法头，没有方法体。使用Abstract修饰）。  
+图 4 属性封装的应用  
+4.创建一个图形类，包括计算图形面积和周长的方法（只有方法头，没有方法体。使用 Abstract 修饰）。  
 （1）创建子类长方形、圆形、三角形，分别继承图形类，重写子类中的计算图形面积的方法。  
 （2）创建一个长方形和圆形类的对象，并且分别计算这两个图形的面积  
 （3）创建一个子类正方形，继承自长方形，重写计算面积的方法。测试
@@ -57,4 +57,4 @@
 
 ## 五、实验结果分析、总结
 
-不得少于200字
+不得少于 200 字
