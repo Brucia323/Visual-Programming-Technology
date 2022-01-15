@@ -17,7 +17,7 @@
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215873902-f8c1f780-e62d-4056-b029-059ff2043782.png#crop=0&crop=0&crop=1&crop=1&id=C7zyk&originHeight=900&originWidth=1600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 2. 在项目中添加一个Form，加入富文本控件，并设置选中文本的字体，字号，颜色，风格等等。如下图所示。
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215874434-9030210e-f668-4cdd-b94f-2b906969b7cc.png#crop=0&crop=0&crop=1&crop=1&id=oRJGo&originHeight=900&originWidth=1440&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-3．完成书本P247的例题9.16，体会将多个事件连接到单个事件。
+3．完成书本P247的例题9.16，体会将多个事件连接到单个事件。  
 4．设计并实现以下界面：
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215874899-16f69c8c-35e2-49eb-aec9-225fd521abf7.png#crop=0&crop=0&crop=1&crop=1&id=mj6wF&originHeight=422&originWidth=887&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
