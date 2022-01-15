@@ -25,7 +25,7 @@
 1. 实现“主页”，“转到”，“刷新”,“后退”，“前进”等功能
 1. 点击“Internet选项”，弹出相应界面，实现“设置主页”功能
 
-在当前界面使用TabControl控件进行布局
+在当前界面使用TabControl控件进行布局  
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215847640-a47786f6-a2ae-4362-8339-eaaa2f78dc54.png#)  
 图1 Internet选项界面
 
@@ -43,18 +43,18 @@
 1）打开ListView控件的属性面板，首先设置View属性的属性值为Details。  
 2）然后设置各列标题，找到Columns属性，单击其右侧的“…”图标，如图2所示。弹出ColumnHeader（列标题）集合编辑器对话框，如图3所示。在该对话框中可以编辑各列标题、各列宽度以各列的显示顺序等。单击对话框左侧的【添加】按钮，即可添加一个列，默认名称为columnHeader1，然后在对话框右侧可以设置该列的Text显示文本、Width宽度等属性，还可以通过DisplayIndex属性设置各列的显示顺序。  
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215848358-3cb93943-22e8-4825-96dc-e869a22ce9e3.png#)  
-图3 设置Columns属性
-![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215848713-b9676a95-ea18-4639-ad37-b60d5a99e05d.png#)
+图3 设置Columns属性  
+![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215848713-b9676a95-ea18-4639-ad37-b60d5a99e05d.png#)  
 图4 ColumnHeader集合编辑器  
-3）设置各列标题后的ListView控件如图4所示，从图中可以看到ListView控件已经显示各列的标题，但是没有显示单元格分隔线条（网络线）。设置GridLine属性的属性值为True，可以显示ListView网格线，如图5所示。
+3）设置各列标题后的ListView控件如图4所示，从图中可以看到ListView控件已经显示各列的标题，但是没有显示单元格分隔线条（网络线）。设置GridLine属性的属性值为True，可以显示ListView网格线，如图5所示。  
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215848932-83aeb4b7-9548-495c-a432-0414078bc28b.png#)  
- 图5 设置列标题后的ListView控件
+图5 设置列标题后的ListView控件  
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215849199-e2de3ad9-794e-4c13-913e-cee7668d1aab.png#)  
 图6 设置GridLine属性后的ListView控件  
 4）设置ListView控件的其他属性，分别设置FullRowSelect属性的属性值为True，设置MultiSelect属性的属性值为False，外观与普通表格相同。  
 （3）编写代码。
-如果要为列表项添加一行，应使用如下代码：（如果是从其他途径获得数据，只需要修改实参就好）
-![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215849400-44f0f2a9-0c3e-4fc6-bb00-c8883ecdb962.png#)
+如果要为列表项添加一行，应使用如下代码：（如果是从其他途径获得数据，只需要修改实参就好）  
+![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215849400-44f0f2a9-0c3e-4fc6-bb00-c8883ecdb962.png#)  
 删除行使用以下代码：
 
 ![](https://cdn.nlark.com/yuque/0/2022/png/23075474/1642215849815-c6d056bc-32cd-4fa1-993c-c24936f5542d.png#)
